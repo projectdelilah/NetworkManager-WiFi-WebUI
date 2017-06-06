@@ -618,7 +618,7 @@ class NMInterface(service.MultiService):
         conn_path = yield self.wifi_dev.get('ActiveConnection')
         if conn_path != '/':
             self.log.debug('Found Active AP: %s', conn_path)
-            ap_path = yield self.dbus.ref('Connection.Active', conn_path).get('SpecificObject')
+            ap_path = yield self.wifi_dev.get('ActiveAccessPoint', iface='Device.Wireless')
             self.wifi_conn_res_ap = yield self.wifi_aps[NMAP.get_uid(ap_path)]
         else:
             self.log.debug('No Active AP detected')
