@@ -761,6 +761,8 @@ class NMInterface(service.MultiService):
                 ap_update['ssid'] = ''.join(map(chr, v))
             elif k == 'Flags':
                 ap_update['private'] = bool(v & self.wifi_ap_flags['privacy'])
+            elif k == 'Frequency':
+                pass
             elif k in _as_is: ap_update[_as_is[k]] = v
             else: self.log.warn('Unrecognized property in AP update: %r = %r', k, v)
         if ap_update.get('private') and ap_update['sec'] == 'none': ap_update['sec'] = 'wep'
